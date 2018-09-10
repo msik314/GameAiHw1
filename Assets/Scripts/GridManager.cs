@@ -40,7 +40,10 @@ public class GridManager : MonoBehaviour
             grid[i] = new byte[size.x];
             for(int j = 0; j < rows[i].Length; ++j)
             {
-                grid[i][j] = translateChar(rows[i][j]);
+                byte val = translateChar(rows[i][j]);
+                grid[i][j] = val;
+                Vector3 ip = new Vector3{j + offset.x, i + offset.y, 0};
+                Instantiate(lookup[val], ip, Quaternion.identity, transform);
                 
             }
             for(int j = rows[i].Length; j < size.x; ++j)
