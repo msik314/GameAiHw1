@@ -21,10 +21,10 @@ public class GridManager : MonoBehaviour
         string line = sr.ReadLine();
         while(line != null)
         {
-            rows.Add(sr);
-            if(sr.Length > size.x)
+            rows.Add(line);
+            if(line.Length > size.x)
             {
-                size.x = sr.Length;
+                size.x = line.Length;
             }
             line = sr.ReadLine();
         }
