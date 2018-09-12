@@ -42,7 +42,7 @@ public class GridManager : MonoBehaviour
             {
                 byte val = translateChar(rows[i][j]);
                 grid[i][j] = val;
-                Vector3 ip = new Vector3(j + offset.x, i + offset.y, 0);
+                Vector3 ip = new Vector3(j + offset.x, size.y - 1 - i + offset.y, 0);
                 Instantiate(lookup[val], ip, Quaternion.identity, transform);
                 
             }
