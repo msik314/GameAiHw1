@@ -31,7 +31,7 @@ public class GridManager : MonoBehaviour
         
         size.y = rows.Count;
         
-        offset = new Vector2Int{size.x/2, size.y/2};
+        offset = new Vector2Int(size.x/2, size.y/2);
         
         grid = new byte[size.y][];
         
@@ -42,7 +42,7 @@ public class GridManager : MonoBehaviour
             {
                 byte val = translateChar(rows[i][j]);
                 grid[i][j] = val;
-                Vector3 ip = new Vector3{j + offset.x, i + offset.y, 0};
+                Vector3 ip = new Vector3(j + offset.x, i + offset.y, 0);
                 Instantiate(lookup[val], ip, Quaternion.identity, transform);
                 
             }
