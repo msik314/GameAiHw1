@@ -9,6 +9,8 @@ public class GridManager : MonoBehaviour
     [SerializeField] private List<char> translate; 
     [SerializeField] private List<GameObject>lookup;
     [SerializeField] private string mapFile;
+	[Space]
+	[SerializeField] private ScoreManager score;
     private byte[][] grid;
     private GameObject[][] pellets;
     private Vector2Int size;
@@ -97,6 +99,7 @@ public class GridManager : MonoBehaviour
             GameObject obj = pellets[index.y][index.x];
             pellets[index.y][index.x] = null;
             Destroy(obj);
+			score.AddPoints(1);
         }
         
         return val == 1 || val == 2;

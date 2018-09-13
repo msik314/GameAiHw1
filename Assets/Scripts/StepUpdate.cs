@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 public class StepUpdate : MonoBehaviour
 {
     [SerializeField] private float stepTime;
+	[Space]
+	[SerializeField] ScoreManager score;
     private float lastStep;
     private HashSet<StepMovement> steppers;
     
@@ -39,6 +41,7 @@ public class StepUpdate : MonoBehaviour
             {
                 if(sm.getLastPos() == player.getLastPos())
                 {
+					score.SaveScore();
                     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 }
             }
