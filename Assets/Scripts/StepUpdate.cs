@@ -18,6 +18,8 @@ public class StepUpdate : MonoBehaviour
     
     void Update()
     {
+		if (Input.GetKeyDown(KeyCode.Space))
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         if(Time.time - lastStep >= stepTime)
         {
             lastStep= Time.time;
