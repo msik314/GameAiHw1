@@ -7,17 +7,37 @@ public class StepUpdate : MonoBehaviour
     [SerializeField] private float stepTime;
 	[Space]
 	[SerializeField] ScoreManager score;
+	[SerializeField] GameObject startText, restartText;
     private float lastStep;
     private HashSet<StepMovement> steppers;
+
+	static bool active = false;
     
     void Awake()
     {
         steppers = new HashSet<StepMovement>();
         lastStep = Time.time - stepTime;
+		restartText.SetActive(false);
+		startText.SetActive(!active);
     }
     
     void Update()
     {
+		if (!active)
+		{
+			if (Input.GetKeyDown(KeyCode.Space))
+			{
+				active = true;
+				startText.SetActive(false);
+				foreach (StepMovement step in steppers)
+					step.enabled = true;
+			}
+			else
+			{
+				foreach (StepMovement step in steppers)
+					step.enabled = false;
+			}
+		}
 		if (Input.GetKeyDown(KeyCode.Space))
 			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         if(Time.time - lastStep >= stepTime)
@@ -41,10 +61,13 @@ public class StepUpdate : MonoBehaviour
             }
             foreach(StepMovement sm in sms)
             {
-                if(sm.getLastPos() == player.getLastPos())
+                if(player && sm.getLastPos() == player.getLastPos())
                 {
 					score.SaveScore();
-                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+					steppers.Remove(player);
+					Destroy(player.gameObject);
+					restartText.SetActive(true);
+                    //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 }
             }
         }
