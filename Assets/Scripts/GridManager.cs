@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+[RequireComponent(typeof(WallGenerator))]
 public class GridManager : MonoBehaviour
 {
     //First 6 tiles in the list should be walkable
@@ -18,6 +19,7 @@ public class GridManager : MonoBehaviour
     
     private List<Vector2Int>bluePos;
     private List<Vector2Int>orangePos;
+	private WallGenerator waller;
     
     void Awake()
     {
@@ -45,8 +47,10 @@ public class GridManager : MonoBehaviour
         
         grid = new byte[size.y][];
         pellets = new GameObject[size.y][];
-        
-        for(int i = 0; i < size.y; ++i)
+		waller = GetComponent<WallGenerator>();
+		waller.SetUp(size);
+
+		for (int i = 0; i < size.y; ++i)
         {
             grid[i] = new byte[size.x];
             pellets[i] = new GameObject[size.x];
@@ -72,6 +76,9 @@ public class GridManager : MonoBehaviour
                 case 4:
                     orangePos.Add(new Vector2Int(j, i));
                     break;
+				case 5:
+					waller.AddWall(i, j, obj.GetComponent<Wall>());
+					break;
                 }
                 
             }
@@ -80,6 +87,7 @@ public class GridManager : MonoBehaviour
                 grid[i][j] = 0;
             }
         }
+		waller.Build();
     }
     
     public bool walk(Vector2Int next)
