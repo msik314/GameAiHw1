@@ -6,6 +6,12 @@ public class PlayerControl : CharControl
 {
     [SerializeField] private string vertAxis;
     [SerializeField] private string horAxis;
+    
+    void Start()
+    {
+        getDirection();
+    }
+    
     public override void setDirection(int direction)
     {
         this.direction = direction;
@@ -14,7 +20,8 @@ public class PlayerControl : CharControl
             transform.rotation = Quaternion.AngleAxis(direction * 90, Vector3.forward);
         }
     }
-    public override int getDirection(bool colliding)
+    
+    public override int getDirection()
     {
         float horiz = Input.GetAxisRaw(horAxis);
         float vert = Input.GetAxisRaw(vertAxis);

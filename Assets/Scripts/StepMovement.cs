@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(CharControl))]
 public class StepMovement : MonoBehaviour
 {
+    [SerializeField] private bool isPlayer;
     private CharControl cc;
     private Vector2Int nextPos;
     private Vector2Int lastPos;
@@ -20,7 +21,6 @@ public class StepMovement : MonoBehaviour
         lastPos = Vector2Int.RoundToInt(transform.position);
         nextPos = lastPos;
         cc = GetComponent<CharControl>();
-        cc.setDirection(1);
         grid = (GridManager)GameObject.FindObjectOfType(typeof(GridManager));
     }
     
@@ -44,9 +44,13 @@ public class StepMovement : MonoBehaviour
         
         lastPos = Vector2Int.RoundToInt(transform.position);
         
-        bool ic = grid.isIntersection(lastPos);
+        if(isPlayer)
+        {
+            grid.eat(lastPos);
+        }
         
-        int d = cc.getDirection(ic);
+        lastPos = grid.teleport(lastPos);
+        int d = cc.getDirection();
         
         switch(d)
         {
@@ -67,9 +71,12 @@ public class StepMovement : MonoBehaviour
             break;
         }
         
-        if(!grid.walk(lastPos, nextPos))
+        if(!grid.walk(nextPos))
         {
             nextPos = lastPos;
         }
     }
+    
+    public bool getIsPlayer() {return isPlayer;}
+    public Vector2 getLastPos() {return lastPos;}
 }

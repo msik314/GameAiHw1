@@ -6,5 +6,5 @@ public abstract class CharControl : MonoBehaviour
 {
     protected int direction;
     public abstract void setDirection(int direction);
-    public abstract int getDirection(bool colliding);
+    public abstract int getDirection();
 }

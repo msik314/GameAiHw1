@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class StepUpdate : MonoBehaviour
 {
     [SerializeField] private float stepTime;
@@ -20,9 +20,27 @@ public class StepUpdate : MonoBehaviour
         {
             lastStep= Time.time;
             float nextTime = lastStep + stepTime;
+            List<StepMovement> sms = new List<StepMovement>();
+            StepMovement player = null;
+            
             foreach(StepMovement sm in steppers)
             {
+                if(sm.getIsPlayer())
+                {
+                    player = sm;
+                }
+                else
+                {
+                    sms.Add(sm);
+                }
                 sm.step(nextTime);
+            }
+            foreach(StepMovement sm in sms)
+            {
+                if(sm.getLastPos() == player.getLastPos())
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                }
             }
         }
     }
