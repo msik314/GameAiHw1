@@ -456,6 +456,7 @@ GameObject:
   - component: {fileID: 281357020}
   - component: {fileID: 281357022}
   - component: {fileID: 281357023}
+  - component: {fileID: 281357024}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -481,7 +482,7 @@ MonoBehaviour:
   - {fileID: 1964438804997020, guid: 4057f64b59c11ac47939046c451f4656, type: 2}
   - {fileID: 1796267108164868, guid: 53d54ee31e1ea874382657dff62a7eb4, type: 2}
   - {fileID: 1796267108164868, guid: 53d54ee31e1ea874382657dff62a7eb4, type: 2}
-  - {fileID: 1138226593867214, guid: cf25f74ff77a7ab47b2f4194a93f960c, type: 2}
+  - {fileID: 1889416804300526, guid: b9b0842d4a2a95b4ba5f0e5ac13cb2a6, type: 2}
   mapFile: Scenes\pac-man maze.txt
   score: {fileID: 281357023}
 --- !u!4 &281357021
@@ -525,6 +526,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   highScoreText: {fileID: 841764804}
   gameScoreText: {fileID: 1628412554}
+--- !u!114 &281357024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 281357019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7647459f0a3c4894c848f30aba7607b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wallSprites:
+  - {fileID: 21300000, guid: 4a28f8dc4c23f894d8bde9554e1affcc, type: 3}
+  - {fileID: 21300000, guid: 9e0fbce6f2fe81146ba978571a4d61a0, type: 3}
+  - {fileID: 21300000, guid: 7559209d5dbbd334d83e2a7e6b6e03ca, type: 3}
+  - {fileID: 21300000, guid: 07c1fa8cc283b6a438585605f4143be1, type: 3}
+  - {fileID: 21300000, guid: ebef63e87906eaf4f930f28694c68941, type: 3}
+  - {fileID: 21300000, guid: d86bf65e77517a74eb52f20d2d15fab2, type: 3}
+  - {fileID: 21300000, guid: ed524fad8feb0cb43af1c10aa5dd4ac0, type: 3}
+  - {fileID: 21300000, guid: a3757d9fcf7c73647801ddb07fb12ac1, type: 3}
+  - {fileID: 21300000, guid: 6d686a666e1cd534897fef26b469277b, type: 3}
+  - {fileID: 21300000, guid: 07294de5bc8c04d4580651b9dbfbba23, type: 3}
+  - {fileID: 21300000, guid: 8a2ec15a3c31608468879cca2bb12a48, type: 3}
+  - {fileID: 21300000, guid: dcc38e8722e0d14468b4df2b4fc4abce, type: 3}
+  - {fileID: 21300000, guid: e5eec89aa79ddb747bb3bbbab826f7c4, type: 3}
+  - {fileID: 21300000, guid: 5964dc9a3a1db6548af82dd19d9de412, type: 3}
+  - {fileID: 21300000, guid: 626d0a08d3d3d9249a09555a67bf5f81, type: 3}
+  - {fileID: 21300000, guid: 56d5a828108d72c4f8a1083808dc2110, type: 3}
 --- !u!1 &366707436
 GameObject:
   m_ObjectHideFlags: 0

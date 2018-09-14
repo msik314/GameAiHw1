@@ -2,16 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-enum WallTypes
-{
-	OuterUpperRight,
-	OuterUpperLeft,
-	OuterRight,
-	OuterLeft,
-	OuterLowerRight,
-	OuterLowerLeft
-}
-
 public class WallGenerator : MonoBehaviour
 {
 	[SerializeField] private Sprite[] wallSprites;
@@ -49,29 +39,8 @@ public class WallGenerator : MonoBehaviour
 					bool left = (j - 1 >= 0 && walls[i, j - 1] != null);
 					bool down = (i - 1 >= 0 && walls[i - 1, j] != null);
 					bool right = (j + 1 < columns && walls[i, j + 1] != null);
-					if (up && left && down && right)
-					{
-						//give up.
-						walls[i, j].SetSprite(null);
-					}
-					if (up && left && down)
-					{
-						if (walls[i + 1, j - 1] == null)
-							walls[i, j].SetSprite(wallSprites[37]);
-						else
-							walls[i, j].SetSprite(wallSprites[35]);
-					}
-					else if (up && right && down)
-					{
-						if (walls[i + 1, j + 1] == null)
-							walls[i, j].SetSprite(wallSprites[36]);
-						if (walls[i - 1, j + 1] == null)
-							walls[i, j].SetSprite(wallSprites[34]);
-					}
-					else if (up && left && right)
-					{
-
-					}
+					int wallFlags = ((up ? 1 : 0) << 3) + ((right ? 1 : 0) << 2) + ((down ? 1 : 0) << 1) + (left ? 1 : 0);
+					walls[i, j].SetSprite(wallSprites[wallFlags]);
 				}
 			}
 		}
